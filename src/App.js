@@ -1,8 +1,8 @@
 import Navbar from "./components/Navbar";
-import RogImg from "./img/RogImg.png";
 import ItemListContainer from "./components/itemListContainer/itemListContainer";
+import RogImg from "./img/RogImg.png";
 import axios from "axios";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes , Route } from "react-router-dom";
 
 function App(){
 
@@ -10,7 +10,13 @@ function App(){
         <div>
             <BrowserRouter>
                 <Navbar img={RogImg}/>
-                <ItemListContainer greeting={"Bienvenido a Compus XD!"}/>
+                
+                    <Routes>
+                        <Route exact path={'/'} element={<ItemListContainer/>} />
+
+
+
+                    </Routes>
            
             </BrowserRouter> 
             

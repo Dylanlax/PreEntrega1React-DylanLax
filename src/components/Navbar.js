@@ -1,5 +1,5 @@
 import CartWidget from "./CartWidget/CartWidget";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 
 function Navbar( {img} ){
@@ -15,9 +15,9 @@ function Navbar( {img} ){
 
             <div id="navbarBasicExample" className="navbar-menu">
                 <div className="navbar-start">
-                    <a className="navbar-item">
+                    <NavLink to={'/'} className={"navbar-item"}>
                         CompusXD!
-                    </a>
+                    </NavLink>
 
                     <a className="navbar-item">
                         Catalogo
