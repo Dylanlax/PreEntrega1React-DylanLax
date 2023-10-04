@@ -1,30 +1,42 @@
-import React from "react";
-import { useState , useEffect } from "react";
-import { getProducts } from "../asyncMock";
+import { useState, useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
+import { getProductos, getProductsByCategory } from "../asyncMock";
+import { useParams } from "react-router-dom";
+import "./ItemListContainer.css"
 
 
-const ItemListContainer = ({greeting}) => {
-    
-    const [products, setProducts] = useState([])
-    
-    useEffect(()=> {
-        getProducts()
+
+function ItemListContainer ({greeting}){
+
+    const [products, setProducts] = useState([]);
+
+    const { categoryId } = useParams();
+
+    console.log("La categoria que llego aca es:", categoryId)
+
+    //Con el useEffect hago el llamado a la API o en este caso el asyncMock:
+    useEffect(()=>{
+
+        const asyncFunc = categoryId ? getProductsByCategory : getProductos
+
+        asyncFunc(categoryId)
             .then(response => {
-                setProducts(response)
+                setProducts(response);
             })
-            .catch(error=> {
+            .catch(error => {
                 console.error(error)
             })
-    }, [])
-    
-    
-    return (
-        <div className="is-centered">
-            <h1 className="has-text-centered">{greeting}</h1>
+    },[categoryId]) //El segundo parametro con un array vacio significa que solo se va a ejecutar cuando se renderize por primera vez
+    //Fin del useEffect
+
+
+    return(
+        <div className="ItemListContainer">
+            <h1>{greeting}</h1>
             <ItemList products={products}/>
         </div>
     )
+
 }
 
 export default ItemListContainer;
