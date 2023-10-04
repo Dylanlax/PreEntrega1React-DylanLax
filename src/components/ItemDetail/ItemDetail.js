@@ -1,5 +1,6 @@
 import ItemCount from "../ItemCount/ItemCount";
 
+
 function ItemDetail ({id, name, image, category, description, price, stock}) {
 
  

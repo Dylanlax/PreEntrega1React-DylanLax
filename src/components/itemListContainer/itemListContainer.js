@@ -14,7 +14,7 @@ function ItemListContainer ({greeting}){
 
     console.log("La categoria que llego aca es:", categoryId)
 
-    //Con el useEffect hago el llamado a la API o en este caso el asyncMock:
+
     useEffect(()=>{
 
         const asyncFunc = categoryId ? getProductsByCategory : getProductos
