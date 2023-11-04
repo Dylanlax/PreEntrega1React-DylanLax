@@ -1,42 +1,62 @@
-import { useState, useEffect } from "react";
-import ItemList from "../ItemList/ItemList";
-import { getProductos, getProductsByCategory } from "../asyncMock";
-import { useParams } from "react-router-dom";
-import "./ItemListContainer.css"
+import { useEffect, useState } from 'react';
+import './ItemListContainer.css';
+import ItemList from '../ItemList/ItemList';
+import { useParams } from 'react-router-dom';
+import { collection, doc, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../../service/firebase/firebaseConfig';
 
 
 
-function ItemListContainer ({greeting}){
+const ItemListContainer = ({ greeting }) => {
 
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true)
+    const { categoryId } = useParams()
 
-    const { categoryId } = useParams();
+    useEffect(() =>{
+        const collectionRef = collection(db, 'products');
 
-    console.log("La categoria que llego aca es:", categoryId)
+        const q = categoryId ? query(collectionRef, where("category", "==", categoryId)) : collectionRef;
+
+        getDocs(q)
+        .then((response)=>{
+
+            setProducts(
+                response.docs.map((doc)=>{
+                    return {...doc.data(), id: doc.id}
+                })
+            )
+        })
+    }, [categoryId])
+
+        
+        
 
 
-    useEffect(()=>{
 
-        const asyncFunc = categoryId ? getProductsByCategory : getProductos
+    
 
-        asyncFunc(categoryId)
-            .then(response => {
-                setProducts(response);
-            })
-            .catch(error => {
-                console.error(error)
-            })
-    },[categoryId]) //El segundo parametro con un array vacio significa que solo se va a ejecutar cuando se renderize por primera vez
-    //Fin del useEffect
+    return (
+        <div className="Title-S">
+
+            <h1 className="Title">{greeting} </h1>
 
 
-    return(
-        <div className="ItemListContainer">
-            <h1>{greeting}</h1>
-            <ItemList products={products}/>
+
+            <section className='TitleContainer'>
+                <ItemList products={products} />
+
+            </section>
+
+
         </div>
+
     )
+
 
 }
 
-export default ItemListContainer;
+
+
+
+export default ItemListContainer; 
