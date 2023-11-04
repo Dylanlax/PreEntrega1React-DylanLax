@@ -1,8 +1,8 @@
-import cart from "./assets/shopping-cart.svg";
 import "./CartWidget.css";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
+import { RiShoppingCart2Line } from "react-icons/ri";
 
 
 const CartWidget = () => {
@@ -13,8 +13,8 @@ const CartWidget = () => {
     
     
     return (
-        <Link to="/cart" className="CartWidget" style={{ display: totalQuantity > 0 ? "block" : "none"}}>
-            <img src={cart} alt="cart-widget" className="CartImg"/>
+        <Link to="/cart">
+            <RiShoppingCart2Line/>
             {totalQuantity}
         </Link>
     )

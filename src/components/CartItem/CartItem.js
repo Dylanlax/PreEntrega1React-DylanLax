@@ -5,28 +5,28 @@ import './CartItem.css';
 
 
 
-const CartItem = ({ products }) => {
-    const { removeProducts} = useContext(CartContext)
+const CartItem = ({ name, price, quantity, id, image }) => {
+    const { removeItem} = useContext(CartContext)
 
 
     return (
         <div className='container'>
             <picture>
 
-                <img src={products.image} alt={products.name} className="imgContainer"/>
+                <img src={image} alt={name} className="imgContainer"/>
 
             </picture>
             <div className='productsCategorie'>
                 <h2>
-                    {products.name}
+                    {name}
                 </h2>
                 <p>
-                    Cantidad: {products.quantity}
+                    Cantidad: {quantity}
                 </p>
                 <p>
-                    Subtotal: {products.quantity * products.price}
+                    Subtotal: {quantity * price}
                 </p>
-                <button onClick={() => removeProducts(products.id)}>Eliminar</button>
+                <button onClick={() => removeItem(id)}>Eliminar</button>
                 
             </div>
         </div>

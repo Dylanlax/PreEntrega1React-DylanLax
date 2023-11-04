@@ -5,7 +5,9 @@ import axios from "axios";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 import { BrowserRouter, Routes , Route } from "react-router-dom";
 import Cart from "./components/Cart/Cart.js";
-import { CartProvider } from "./context/CartContext.js";
+import { CartProvider, CartContext } from "./context/CartContext.js";
+
+
 
 function App(){
 
@@ -34,13 +36,6 @@ function App(){
         </div>
     )
 }
-
-
-
-
-
-
-
 
 
 
