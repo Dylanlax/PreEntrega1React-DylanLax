@@ -1,0 +1,19 @@
+.noHay{
+    margin-top: 100px;
+    margin-left: 20px;
+}
+
+
+.noHayTexto{
+    font-weight: bold;
+    font-size: x-large;
+    margin-bottom: 50px;
+}
+
+
+.Option{
+    background-color: rgb(151, 85, 85);
+    padding: 15px;
+    border-radius: 20px;
+    font-style: none;
+}

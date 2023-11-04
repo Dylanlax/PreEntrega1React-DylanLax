@@ -26,7 +26,7 @@ function Item ({id, title, image, price, stock }){
                 </p>
             </section>
             <footer className="CardItemFooter">
-                <Link to={`/item/${id}`} className="Option">Ver detalle</Link>
+                <Link to={`/item/${id}`} className="">Ver detalle</Link>
             </footer>
         </article>
     )

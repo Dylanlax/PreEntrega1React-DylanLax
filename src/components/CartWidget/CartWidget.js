@@ -13,8 +13,8 @@ const CartWidget = () => {
     
     
     return (
-        <Link to="/cart">
-            <RiShoppingCart2Line/>
+        <Link to="/cart" className="globoDeWidget">
+            <RiShoppingCart2Line className="widget"/>
             {totalQuantity}
         </Link>
     )
